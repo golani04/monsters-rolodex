@@ -18,6 +18,17 @@ class App extends React.Component {
 			.then((res) => res.json())
 			.then((users) => this.setState({ monsters: users }));
 	}
+
+	render() {
+		const { monsters, searchField } = this.state;
+		const filteredMonsters = monsters.filter((monster) =>
+			monster.name.toLowerCase().includes(searchField.toLowerCase()),
+		);
+		return (
+			<div className="App">
+				<CardList monsters={filteredMonsters} />
+			</div>
+		);
 	}
 }
 
